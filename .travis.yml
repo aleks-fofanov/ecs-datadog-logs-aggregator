@@ -1,0 +1,22 @@
+language: ruby
+
+addons:
+  apt:
+    packages:
+      - git
+      - make
+      - curl
+
+services:
+  - docker
+
+install:
+  - make travis/docker-login
+
+script:
+  - readme/lint
+  - make bash/lint
+  - make docker/build
+
+after_success:
+  - make travis/docker-tag-and-push

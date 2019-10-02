@@ -1,0 +1,101 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: ecs-datadog-logs-aggregator
+
+# Tags of this project
+tags:
+  - docker
+  - ecs
+  - cluster
+  - logs
+  - fluentd
+  - datadog
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "APACHE2"
+
+# Canonical GitHub repo
+github_repo: aleks-fofanov/ecs-datadog-logs-aggregator
+
+# Badges to display
+badges:
+  - name: "Build Status"
+    image: "https://travis-ci.org/aleks-fofanov/ecs-datadog-logs-aggregator.svg?branch=master"
+    url: "https://travis-ci.org/aleks-fofanov/ecs-datadog-logs-aggregator"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/aleks-fofanov/ecs-datadog-logs-aggregator.svg"
+    url: "https://github.com/aleks-fofanov/ecs-datadog-logs-aggregator/releases/latest"
+
+#References
+references:
+  - name: "Building a scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose"
+    description: "Building a scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose"
+    url: "https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/"
+  - name: "Centralized Container Logging with Fluent Bit"
+    description: "Centralized Container Logging with Fluent Bit"
+    url: "https://aws.amazon.com/blogs/opensource/centralized-container-logging-fluent-bit/"
+
+# Short description of this project
+description: |-
+  Customized Fluentd image designed to be deployed to AWS ECS cluster and ship containers logs to Datadog.
+
+introduction: |-
+  This docker image is a customized version Fluentd image (`v1.4.2-debian-2.0`) designed to collect logs from your
+  ECS containers and ship them to Datadog.
+
+  **Why this project**:
+  Installing Datadog agent(s) on each node in your ECS cluster may not be an option for some users
+  as this can be expensive depending on the number of nodes in the cluster. Also, some users might want to build
+  a highly-available solution for logs collections & aggregation.
+
+  **Implementation notes and Warnings**:
+  - Datadog API key should be passed to container via `DD_API_KEY` environment variable
+  - Pefix your containers log tags with `docker.`, otherwise logs won't be processed
+    ```json
+    "logConfiguration": {
+        "logDriver": "fluentd",
+        "options": {
+            "fluentd-address": "fluentd-address:24224",
+            "tag": "docker.backend-app"
+        }
+    }
+    ```
+
+  Fluentd is configured to be `json` logs friendly, meaning that it would try to parse log records as json
+    and [set fields to the resulting record from parsed json](https://docs.fluentd.org/filter/parser#reserve_data).
+
+  **Exposed ports**:
+  - TCP 0.0.0.0 9880 (HTTP for healthcheck purposes only)
+  - TCP & UPD 0.0.0.0 24224 (Logs collection & forwarding to Datadog)
+
+  You can use the following command in ECS to setup a healthcheck for the container:
+     `["CMD-SHELL", "curl http://0.0.0.0:9880/fluentd.healthcheck?json=%7B%22log%22%3A+%22health+check%22%7D || exit 1"]`
+
+  **Recommended deployment options**:
+  - Daemonset on ECS container instances (EC2)
+  - Autoscaling ECS Service on Fargate (you would also need to configure ECS Service Discovery in this case)
+
+quickstart: |-
+  To run container locally for testing:
+  ```bash
+  docker run -d --name fluentd \
+  -e DD_API_KEY=YOUR_DATADOG_API_KEY -p 24224:24224 \
+  aleks-fofanov/ecs-datadog-logs-aggregator
+  ```
+  Then you can configure your containers to ship logs to `localhost:24224`.
+
+include:
+  - "docs/targets.md"
+
+# Contributors to this project
+contributors:
+  - name: "Aleksandr Fofanov"
+    github: "aleks-fofanov"
