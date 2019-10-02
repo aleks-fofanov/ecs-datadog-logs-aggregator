@@ -11,6 +11,7 @@ services:
   - docker
 
 install:
+  - make init  
   - make travis/docker-login
 
 script:
