@@ -15,7 +15,7 @@ install:
   - make travis/docker-login
 
 script:
-  - readme/lint
+  - make readme/lint
   - make bash/lint
   - make docker/build
 
