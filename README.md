@@ -63,7 +63,7 @@ To run container locally for testing:
 ```bash
 docker run -d --name fluentd \
 -e DD_API_KEY=YOUR_DATADOG_API_KEY -p 24224:24224 \
-aleks-fofanov/ecs-datadog-logs-aggregator
+aleksfofanov/ecs-datadog-logs-aggregator
 ```
 Then you can configure your containers to ship logs to `localhost:24224`.
 
