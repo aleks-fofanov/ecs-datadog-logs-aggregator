@@ -87,8 +87,8 @@ Available targets:
 
 For additional context, refer to some of these links. 
 
-- [Building a scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose](https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/) - Building a scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose
-- [Centralized Container Logging with Fluent Bit](https://aws.amazon.com/blogs/opensource/centralized-container-logging-fluent-bit/) - Centralized Container Logging with Fluent Bit
+- [Scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose](https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/) - Great example of how to build a scalable log solution on AWS
+- [Centralized Container Logging with Fluent Bit](https://aws.amazon.com/blogs/opensource/centralized-container-logging-fluent-bit/) - Another example of centralized logs collection & aggregation
 
 
 ## Help

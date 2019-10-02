@@ -36,11 +36,11 @@ badges:
 
 #References
 references:
-  - name: "Building a scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose"
-    description: "Building a scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose"
+  - name: "Scalable log solution aggregator with AWS Fargate, Fluentd, and Amazon Kinesis Data Firehose"
+    description: "Great example of how to build a scalable log solution on AWS"
     url: "https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/"
   - name: "Centralized Container Logging with Fluent Bit"
-    description: "Centralized Container Logging with Fluent Bit"
+    description: "Another example of centralized logs collection & aggregation"
     url: "https://aws.amazon.com/blogs/opensource/centralized-container-logging-fluent-bit/"
 
 # Short description of this project
