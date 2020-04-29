@@ -61,6 +61,7 @@ You can use the following command in ECS to setup a healthcheck for the containe
 - `DD_INTAKE_PORT` - configures `port` plugin property
 - `DD_INTAKE_SSL_PORT` - configures `ssl_port` plugin property
 - `DD_USE_SSL` - configures `use_ssl` plugin property
+
 Please refer to
 [Datadog's Fluend plugin properties](https://github.com/DataDog/fluent-plugin-datadog#fluent-plugin-datadog-properties)
 documentation for more context.
